@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import data from './clients.json'
+import { Grid, Image } from 'semantic-ui-react'
+import Search from "./Components/Search"
+import List from "./Components/List"
+import Description from "./Components/Description"
 
 // import ClientDetails from "./Components/ClientDetails"
 
@@ -7,11 +11,12 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   state = {
     openClient: null,
-    value:'',
+    value: '',
   }
 
   handleClick(index) {
@@ -20,16 +25,28 @@ class App extends Component {
     })
   }
 
-  handleChange(e){
+  handleChange(e) {
     this.setState({
       value: e.target.value
     })
   }
 
   render() {
-
+    return (
+      <main>
+        <Grid.Row>
+          <Grid.Column>
+            <Search/>
+            <List/>
+          </Grid.Column>
+          <Grid.Column>
+            <Description/>
+          </Grid.Column>
+        </Grid.Row>
+      </main>
+    )
     const listClient = data.map((item, index) =>
-      <div onClick={this.handleClick.bind(this, index)} key={index}>
+      <div onClick={() => this.handleClick(index)} key={index}>
         <img src={item.general.avatar} style={{width: '50px', height: '50px'}}/>
         {item.general.firstName + item.general.lastName}
         <div>
