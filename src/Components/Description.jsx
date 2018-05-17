@@ -1,47 +1,35 @@
 import React from 'react'
 import {connect} from "react-redux"
-import {Grid, Card, Image} from 'semantic-ui-react'
+import {Item} from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 import {clientDetails} from "../actions/client.action"
 import clientsReducer from "../reducers/clients.reducer"
 
 const Description = ({clients, clientDetails}) =>
-  <div>
+  <div className="MarginBlock">
     {clients.map((client, index) =>
-      <Grid centered>
+      <div key={index}>
         {clientDetails === index &&
-
-        <Card key={clientDetails}>
-          <Image src={client.general.avatar} style={{width:'100%'}}/>
-
-          <Card.Content>
-
-            <Card.Header>
-              {client.general.firstName} {client.general.lastName}
-            </Card.Header>
-
-            <Card.Description>
-              {client.job.title} <br/>
-              {client.job.company}
-            </Card.Description>
-
-            <Card.Meta>
-            <span>
-               {client.contact.email} <br/>
-              {client.contact.phone}
-            </span>
-            </Card.Meta>
-          </Card.Content>
-
-          <Card.Content extra>
-            Country: {client.address.country}<br/>
-            City: {client.address.city} <br/>
-            Street: {client.address.street} <br/>
-            Zip Code:{client.address.zipCode}
-          </Card.Content>
-
-        </Card>
+        <Item.Group key={clientDetails}>
+          <Item>
+            <Item.Image src={client.general.avatar} style={{width: 'auto'}}/>
+            <Item.Content>
+              <Item.Header>{client.general.firstName} {client.general.lastName} </Item.Header>
+              <Item.Meta> {client.job.title} </Item.Meta>
+              <Item.Meta>{client.job.company} </Item.Meta>
+              <Item.Meta>{client.contact.email} </Item.Meta>
+              <Item.Meta>{client.contact.phone}</Item.Meta>
+              <Item.Extra>
+                <div>Country: {client.address.country}</div>
+                <div> City: {client.address.city}</div>
+                <div>Street: {client.address.street}</div>
+                <div>Zip Code: {client.address.zipCode}</div>
+              </Item.Extra>
+            </Item.Content>
+          </Item>
+        </Item.Group>
         }
-      </Grid>
+      </div>
     )}
   </div>
 
@@ -50,5 +38,11 @@ const mapStateToProps = (store) => {
     clients: store.clientsReducer.clients,
     clientDetails: store.clientsReducer.clientDetails
   }
+}
+Description.propTypes = {
+  clients: PropTypes.array,
+  index: PropTypes.number,
+  client: PropTypes.object,
+  clientDetails: PropTypes.number
 }
 export default connect(mapStateToProps)(Description)

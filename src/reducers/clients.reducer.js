@@ -12,12 +12,12 @@ export default (state = initialState, {type, payload}) => {
     case CLIENT_SEARCH: {
       const {clients} = state
 
-      let filteredClients = clients.filter((client) => {
+      let filteredClients = initialState.clients.filter((client) => {
         const name = client.general.firstName + client.general.lastName
-        // name.search(payload) !== -1 ?
-        return name.search(payload) !== -1
+        return name.toLowerCase().includes(payload)
       })
       if (payload === "") filteredClients = initialState.clients
+
       return {
         ...state,
         clients: filteredClients,
@@ -25,8 +25,7 @@ export default (state = initialState, {type, payload}) => {
     }
 
     case CLIENT_DETAILS: {
-      const {clients, clientDetails} = state
-
+      const {clientDetails} = state
       return {
         ...state,
         clientDetails: clientDetails=== payload ? null : payload

@@ -1,12 +1,13 @@
 import React from 'react'
-import {Grid, Input} from "semantic-ui-react"
+import {Input, Menu} from "semantic-ui-react"
 import {connect} from 'react-redux'
 import {searchClients} from '../actions/client.action'
 
 const Search = ({dispatch, searchClients}) =>
-  <Grid centered>
-    <Input focus placeholder='Search...' onChange={searchClients}/>
-  </Grid>
+
+  <Menu.Item>
+    <Input focus icon='search' placeholder='Search...' onChange={searchClients}/>
+  </Menu.Item>
 
 const mapStateToProps = (store) => {
   return {}
