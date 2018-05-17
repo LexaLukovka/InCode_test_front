@@ -45,6 +45,10 @@ class App extends Component {
         </Grid.Row>
       </main>
     )
+
+
+
+
     const listClient = data.map((item, index) =>
       <div onClick={() => this.handleClick(index)} key={index}>
         <img src={item.general.avatar} style={{width: '50px', height: '50px'}}/>

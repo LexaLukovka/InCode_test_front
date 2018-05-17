@@ -12,15 +12,10 @@ export default (state = initialState, {type, payload}) => {
       const {clients} = state
 
       let filteredClients = clients.filter((client) => {
-
         const name = client.general.firstName + client.general.lastName
-
         return name.search(payload) !== -1
       })
-
       if (payload === "") filteredClients = initialState.clients
-
-      debugger
       return {
         ...state,
         clients: filteredClients,
