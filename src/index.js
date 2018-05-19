@@ -9,4 +9,4 @@ const Wrapper = () =>
     <App/>
   </Provider>
 
-ReactDOM.render(<Wrapper />, document.getElementById('root'));
+ReactDOM.render(<Wrapper/>, document.getElementById('root'));

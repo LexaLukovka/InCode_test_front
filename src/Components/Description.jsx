@@ -2,12 +2,10 @@ import React from 'react'
 import {connect} from "react-redux"
 import {Item} from 'semantic-ui-react'
 import PropTypes from 'prop-types'
-import {clientDetails} from "../actions/client.action"
-import clientsReducer from "../reducers/clients.reducer"
 
-const Description = ({clients, clientDetails}) =>
+const Description = ({filteredClients, clientDetails}) =>
   <div className="MarginBlock">
-    {clients.map((client, index) =>
+    {filteredClients.map((client, index) =>
       <div key={index}>
         {clientDetails === index &&
         <Item.Group key={clientDetails}>
@@ -35,12 +33,12 @@ const Description = ({clients, clientDetails}) =>
 
 const mapStateToProps = (store) => {
   return {
-    clients: store.clientsReducer.clients,
+    filteredClients: store.clientsReducer.filteredClients,
     clientDetails: store.clientsReducer.clientDetails
   }
 }
 Description.propTypes = {
-  clients: PropTypes.array,
+  filteredClients: PropTypes.array,
   index: PropTypes.number,
   client: PropTypes.object,
   clientDetails: PropTypes.number

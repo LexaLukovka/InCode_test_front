@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from "react-redux"
 import {Menu, Item} from "semantic-ui-react"
-import clientsReducer from "../reducers/clients.reducer"
-import {clientDetails} from "../actions/client.action"
+import {clientDetails} from "../Products/actions/client.action"
 
 class ClientList extends React.Component {
   state = {activeItem: null}
@@ -13,18 +12,18 @@ class ClientList extends React.Component {
     )
 
   render() {
-    const {clients, clientDetails} = this.props
+    const {filteredClients, clientDetails} = this.props
     const {activeItem} = this.state
     return (
       <div>
-        {clients.map((client, index) =>
+        {filteredClients.map((client, index) =>
           <div key={index} onClick={() => clientDetails(index)}>
             <Menu.Item
               names={index}
               active={activeItem === index}
               onClick={this.handleItemClick}>
-              <Item.Group key={index}>
-                <Item>
+              <Item.Group>
+                <Item key={index}>
                   <Item.Image size="tiny" avatar src={client.general.avatar}
                               style={{float: 'left', marginRight: '15px'}}/>
                   <Item.Content style={{marginTop: '15px'}}>
@@ -44,7 +43,7 @@ class ClientList extends React.Component {
 
 const mapStateToProps = (store) => {
   return {
-    clients: store.clientsReducer.clients,
+    filteredClients: store.clientsReducer.filteredClients,
   }
 }
 
@@ -54,9 +53,10 @@ const mapDispatchTopProps = (dispatch) => {
   }
 }
 ClientList.propTypes = {
-  clients: PropTypes.array,
+  filteredClients: PropTypes.array,
   index: PropTypes.number,
   client: PropTypes.object,
   activeItem: PropTypes.number,
+  clientDetails: PropTypes.func,
 };
 export default connect(mapStateToProps, mapDispatchTopProps)(ClientList)

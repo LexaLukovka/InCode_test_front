@@ -3,9 +3,17 @@ import {Grid, Menu, Segment} from 'semantic-ui-react'
 import Search from "./Components/Search"
 import List from "./Components/List"
 import Description from "./Components/Description"
+import {connect} from "react-redux"
+import {loadClients} from "./Products/actions/client.action"
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.loadClients()
+  }
+
   render() {
+    if(this.props.loading) return <div>Loading</div>
     return (
       <main>
         <Grid>
@@ -26,4 +34,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (store) => {
+  return {}
+}
+
+const mapDispatchToProps = () => (dispatch) => ({
+  loadClients: () => dispatch(loadClients())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
