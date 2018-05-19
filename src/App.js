@@ -4,7 +4,7 @@ import Search from "./Components/Search"
 import List from "./Components/List"
 import Description from "./Components/Description"
 import {connect} from "react-redux"
-import {loadClients} from "./Products/actions/client.action"
+import {loadClients} from "./Redux/actions/client.action"
 
 class App extends Component {
 

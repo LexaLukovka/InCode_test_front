@@ -1,7 +1,7 @@
 import React from 'react'
 import {Input, Menu} from "semantic-ui-react"
 import {connect} from 'react-redux'
-import {searchClients} from '../Products/actions/client.action'
+import {searchClients} from '../Redux/actions/client.action'
 
 const Search = ({dispatch, searchClients}) =>
 

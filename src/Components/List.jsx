@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from "react-redux"
 import {Menu, Item} from "semantic-ui-react"
-import {clientDetails} from "../Products/actions/client.action"
+import {clientDetails} from "../Redux/actions/client.action"
 
 class ClientList extends React.Component {
   state = {activeItem: null}
