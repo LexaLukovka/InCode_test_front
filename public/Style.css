@@ -1,3 +1,16 @@
-.MarginBlock{
+html, body {
+    overflow: hidden;
+}
+
+.MarginBlock {
     margin: 10px;
+}
+
+.List {
+    height: 95vh;
+    overflow-y: hidden;
+}
+
+.List:hover {
+    overflow-y: auto;
 }

@@ -14,8 +14,10 @@ export default (state = initialState, {type, payload}) => {
       const {clients} = state
 
       let filteredClients = clients.filter((client) => {
-        const name = client.general.firstName + client.general.lastName
-        return name.toLowerCase().includes(payload)
+        const allInfo = client.general.firstName + ' ' + client.general.lastName + ' ' + client.job.title + ' ' + client.job.company
+          + ' ' + client.contact.email + ' ' + client.contact.phone + ' ' + client.address.country + ' ' + client.address.city + ' ' + client.address.street + ' ' + client.address.zipCode
+
+        return allInfo.toLowerCase().includes(payload.toLowerCase())
       })
       if (payload === "") filteredClients = clients
 
